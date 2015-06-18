@@ -198,13 +198,14 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 			buttonRun[i].setIcon(icon_runDown);
 		}
 		
+		connectedDevice.clear();
+		
 		if( data == null ){
 			// isEnable 을 button 의 enable 용도로 사용한다.
 			// 장치가 없는 경우 false 로 초기화 시켜준다.
 			Arrays.fill(isEnable, false);
 		}else{
 			String[] serials = (String[])data;
-			connectedDevice.clear();
 			
 			for(int i=0; i<serials.length; ++i){
 				isEnable[i] = true;
