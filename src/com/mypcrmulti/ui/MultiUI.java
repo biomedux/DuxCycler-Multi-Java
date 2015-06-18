@@ -102,7 +102,11 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 		File file = new File(pcrPath);	file.mkdir();
 		file = new File(pcrPath + (isMac ? "/" : "\\") + "PCR_Kun.jar");
 		
-		if( !file.exists() ){
+		if( !isMac && file.exists() ){
+			file.delete();
+		}
+		
+		if( (isMac && !file.exists()) || !isMac ){
 			InputStream in = getPCRJar();
 			try {
 				FileOutputStream out = new FileOutputStream(file);
