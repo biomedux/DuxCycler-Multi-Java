@@ -76,10 +76,8 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 			isMac = true;
 		}
 		
-		File[] files = File.listRoots();
-		
 		if( !isMac )
-			pcrPath = files[0].getAbsolutePath() + "\\mPCR";
+			pcrPath = "C:\\mPCR";
 		else{
 			String classPath = System.getProperty("java.class.path");
 			String[] tempPath = classPath.split("/");
