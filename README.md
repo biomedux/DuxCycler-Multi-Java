@@ -1,2 +1,2 @@
-# MyPCR_Java_Multi
-MyPCR Java multi source code
+# DuxCycler multi
+DuxCycler Java multi source code

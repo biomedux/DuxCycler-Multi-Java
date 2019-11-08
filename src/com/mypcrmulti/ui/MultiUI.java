@@ -35,7 +35,7 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 
 	private static final long serialVersionUID = 2L;
 	
-	private static final int WIDTH = 332, HEIGHT = 256;
+	private static final int WIDTH = 332, HEIGHT = 266;
 	
 	private JTextField textSerial[] = new JTextField[8];
 	private JLabel buttonRun[] = new JLabel[8];
@@ -61,6 +61,7 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 	private static boolean isMac = false;
 	private static String pcrPath = "";
 	private static String macIconPath = "";
+	private static final String JAR_FILE = "DuxCycler.jar";
 	
 	static{
 		if( !HidClassLoader.LoadLibrary() ){
@@ -93,12 +94,12 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 	}
 	
 	private InputStream getPCRJar(){
-		return getClass().getClassLoader().getResourceAsStream("PCR_Kun.jar");
+		return getClass().getClassLoader().getResourceAsStream(JAR_FILE);
 	}
 	
 	private void makePCRJar(){
 		File file = new File(pcrPath);	file.mkdir();
-		file = new File(pcrPath + (isMac ? "/" : "\\") + "PCR_Kun.jar");
+		file = new File(pcrPath + (isMac ? "/" : "\\") + JAR_FILE);
 		
 		if( !isMac && file.exists() ){
 			file.delete();
@@ -151,7 +152,7 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 	private void initUI(){
 		setSize(WIDTH, HEIGHT);
 		setLayout(null);
-		setTitle("mPCR v2.0");
+		setTitle("DuxCycler Lancher V4.0");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		getContentPane().setBackground(new Color(208, 228, 163));
@@ -178,7 +179,7 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 		buttonAllRun.addMouseListener(this);
 		
 		JLabel labelLogo = new JLabel(new ImageIcon(url_logo));
-		labelLogo.setBounds(74, 185, 182, 37);
+		labelLogo.setBounds(74, 185, 182, 50);
 		
 		add(buttonAllRun);
 		add(labelLogo);
@@ -247,13 +248,13 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 									"-Xdock:name=" + serial,
 									"-Xdock:icon=" + macIconPath + "/PCR_Kun.icns",
 									"-jar", 
-									"PCR_Kun.jar", 
+									JAR_FILE, 
 									serial} ;
 			command = tempCmd;
 		}else{
 			String[] tempCmd = { 	(System.getProperty("java.home") + "/bin/java"),
 					"-jar", 
-					"PCR_Kun.jar", 
+					JAR_FILE, 
 					serial} ;
 			command = tempCmd;
 		}

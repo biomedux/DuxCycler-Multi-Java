@@ -51,7 +51,7 @@ public class CallbackDeviceChange extends Thread
 					for( HIDDeviceInfo device : devices )
 					{
 						if( device.getVendor_id() == DeviceConstant.VENDOR_ID && 
-								device.getProduct_id() == DeviceConstant.PRODUCT_ID )
+							 (device.getProduct_id() == DeviceConstant.PRODUCT_ID || device.getProduct_id() == DeviceConstant.PRODUCT_ID_BMX) )
 						{
 							serials[cnt] = device.getSerial_number();
 							cnt++;
