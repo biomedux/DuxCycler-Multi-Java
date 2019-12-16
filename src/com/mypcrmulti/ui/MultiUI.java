@@ -281,13 +281,15 @@ public class MultiUI extends JFrame implements DeviceChange, MouseListener{
 				
 				if( !isMac ){
 					try {
-						Process p = Runtime.getRuntime().exec("tasklist /v /fo list");
+						Process p = Runtime.getRuntime().exec("tasklist /v /fi \"imagename eq java.exe\"");
 						InputStream in = p.getInputStream();
 						BufferedReader in2 = new BufferedReader(new InputStreamReader(in));
 						String line = null;
 						while( (line = in2.readLine()) != null ){
-							if( line.contains("Ã¢ Á¦¸ñ:"))
-								processList.add(line.substring(10));
+							if (line.contains("java.exe")) {
+								String[] splits = line.split(" "); 
+								processList.add(splits[splits.length - 1]);
+							}
 						}
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
